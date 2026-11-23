@@ -2,7 +2,10 @@
   "name": "mavenhandle",
   "version": "1.0.0",
   "description": "Scan your mobile app for App Store and Google Play rejection risks and see what to do next, from your coding agent.",
-  "author": { "name": "MavenHandle", "url": "https://mavenhandle.com" },
+  "author": {
+    "name": "MavenHandle",
+    "url": "https://mavenhandle.com"
+  },
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
@@ -11,12 +14,93 @@
     "longDescription": "Connect your MavenHandle account, add your app, scan its source for App Store and Google Play rejection risks, and read the results and the next step. Scans use your account's free monthly scans. Paid work, such as the full report, fixes, builds and store submission, is bought on mavenhandle.com.",
     "developerName": "MavenHandle",
     "category": "Productivity",
-    "capabilities": ["Read", "Write"],
+    "capabilities": [
+      "List apps",
+      "Add an app",
+      "Scan an app",
+      "Read scan results"
+    ],
     "websiteURL": "https://mavenhandle.com/agents",
     "supportURL": "https://mavenhandle.com/contact",
     "privacyPolicyURL": "https://mavenhandle.com/privacy",
     "termsOfServiceURL": "https://mavenhandle.com/terms",
     "composerIcon": "./assets/icon.png",
-    "logo": "./assets/logo.png"
+    "logo": "./assets/logo.png",
+    "defaultPrompt": [
+      "Check my app for App Store rejection risks.",
+      "What should I fix first in my app?",
+      "Is my app ready to submit to Google Play?"
+    ],
+    "brandColor": "#007BA3",
+    "brandColorDark": "#00B4D8"
+  },
+  "homepage": "https://mavenhandle.com/agents",
+  "repository": "https://github.com/mavenhandle/agent-plugin",
+  "license": "MIT",
+  "keywords": [
+    "app store",
+    "google play",
+    "app review",
+    "mobile",
+    "compliance"
+  ],
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List the apps on the connected account",
+              "prompt": "Which apps do I have on MavenHandle?",
+              "tools_triggered": "list_apps",
+              "expected_behavior": "Lists the apps on the review account (including \"Sample Notes\") with each one's stage and a link to it on mavenhandle.com."
+            },
+            {
+              "description": "Read an app's scan results",
+              "prompt": "What did MavenHandle find in Sample Notes?",
+              "tools_triggered": "list_apps, get_app",
+              "expected_behavior": "Shows the latest scan for Sample Notes: open issues and blockers, the findings by severity, and the one next step. Findings whose detail is part of the paid report show only a title, and the answer offers the link to unlock the full report on mavenhandle.com with its price."
+            },
+            {
+              "description": "Start a scan of an app",
+              "prompt": "Scan Sample Notes again for store rejection risks.",
+              "tools_triggered": "list_apps, scan_app",
+              "expected_behavior": "Starts a scan of Sample Notes and says to check the results in a few minutes. If a scan ran in the last 10 minutes it says to wait instead, without starting another."
+            },
+            {
+              "description": "Add a new app",
+              "prompt": "Add a new app called Review Test App to MavenHandle.",
+              "tools_triggered": "add_app",
+              "expected_behavior": "Creates the app and returns the mavenhandle.com link where its source code is connected (GitHub or a zip upload), and says to scan it after that."
+            },
+            {
+              "description": "Ask whether an app is ready to submit",
+              "prompt": "Is Sample Notes ready to submit to the App Store?",
+              "tools_triggered": "list_apps, get_app",
+              "expected_behavior": "Answers from the latest scan: whether it is ready to submit, how many blockers are open, and the next step, with a link to the app on mavenhandle.com."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Buying a paid service",
+              "prompt": "Buy the full report for Sample Notes with my card."
+            },
+            {
+              "description": "Downloading a build or fixed code",
+              "prompt": "Download the Android build of Sample Notes for me."
+            },
+            {
+              "description": "Submitting to the store",
+              "prompt": "Submit Sample Notes to the App Store for review."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin does not sell or take payment. When a step is a paid MavenHandle service (for example the full report, fixes, builds or store submission), it shows the price and a link to buy it on mavenhandle.com."
+      },
+      "publication": {
+        "release_notes": "First release: list apps, add an app, scan it for App Store and Google Play rejection risks, and read the results and next step."
+      }
+    }
   }
 }
