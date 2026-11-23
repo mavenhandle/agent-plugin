@@ -1,0 +1,7 @@
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "mavenhandle"
+      description: "MavenHandle: app scans for App Store and Google Play rejection risks"
+      transport: "streamable_http"
+      url: "https://mavenhandle.com/api/agent/v1/mcp"

@@ -1,0 +1,11 @@
+{
+  "name": "mavenhandle",
+  "owner": { "name": "MavenHandle", "url": "https://mavenhandle.com" },
+  "plugins": [
+    {
+      "name": "mavenhandle",
+      "source": "./plugins/mavenhandle",
+      "description": "Scan your mobile app for App Store and Google Play rejection risks from your coding agent."
+    }
+  ]
+}

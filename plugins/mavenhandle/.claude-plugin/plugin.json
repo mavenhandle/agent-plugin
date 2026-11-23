@@ -1,0 +1,8 @@
+{
+  "name": "mavenhandle",
+  "version": "1.0.0",
+  "description": "Scan your mobile app for App Store and Google Play rejection risks and see what to do next, from your coding agent.",
+  "author": { "name": "MavenHandle", "url": "https://mavenhandle.com" },
+  "homepage": "https://mavenhandle.com/agents",
+  "license": "MIT"
+}

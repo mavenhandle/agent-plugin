@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mavenhandle": {
+      "type": "streamable-http",
+      "url": "https://mavenhandle.com/api/agent/v1/mcp"
+    }
+  }
+}
