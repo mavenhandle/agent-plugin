@@ -1,6 +1,7 @@
 {
   "name": "mavenhandle",
   "owner": { "name": "MavenHandle", "url": "https://mavenhandle.com" },
+  "description": "MavenHandle for coding agents: check a mobile app for App Store and Google Play rejection risks.",
   "plugins": [
     {
       "name": "mavenhandle",
